@@ -21,5 +21,6 @@ public class Main {
         xmlmanager.createAlumno(alunmo);
     
         System.out.println("hola desde mi pc");
+         System.out.println("hola desde la mia");
     }
 }
