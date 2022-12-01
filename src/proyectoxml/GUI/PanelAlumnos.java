@@ -10,11 +10,11 @@ package proyectoxml.GUI;
  */
 public class PanelAlumnos extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelAlumnos
-     */
-    public PanelAlumnos() {
+    private VentaPrincipal vp;
+
+    public PanelAlumnos(VentaPrincipal vp) {
         initComponents();
+        this.vp = vp;
     }
 
     /**
@@ -109,8 +109,7 @@ public class PanelAlumnos extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -119,11 +118,11 @@ public class PanelAlumnos extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btbCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbCrearActionPerformed
-        // TODO add your handling code here:
+        vp.mostrarPanelAlumnoDetalle();
     }//GEN-LAST:event_btbCrearActionPerformed
 
     private void btbCrearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbCrearMouseClicked
-        
+
     }//GEN-LAST:event_btbCrearMouseClicked
 
 

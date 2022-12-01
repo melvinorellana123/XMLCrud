@@ -17,31 +17,29 @@ public class VentaPrincipal extends javax.swing.JFrame {
      * Creates new form Jframe
      */
     private CardLayout vista;
-    private PanelAlumnoDetalle panelAlumnosDetalle = new PanelAlumnoDetalle();
-    private PanelAlumnos panelAlumnos = new PanelAlumnos();
+    private PanelAlumnoDetalle panelAlumnosDetalle = new PanelAlumnoDetalle(this);
+    private PanelAlumnos panelAlumnos = new PanelAlumnos(this);
 
     public VentaPrincipal() {
         initComponents();
         vista = (CardLayout) jPanelContenedor.getLayout();
         jPanelContenedor.add(panelAlumnosDetalle, "panelDetalle");
         jPanelContenedor.add(panelAlumnos, "panelAlumnos");
-        
+
         this.mostrarPanelAlumnos();
-        
-        
 
     }
 
-    private void mostrarPanelAlumnos() {
+    public void mostrarPanelAlumnos() {
         vista.show(jPanelContenedor, "panelAlumnos");
         SwingUtilities.updateComponentTreeUI(this);
         this.repaint();
 
     }
 
-    private void mostrarPanelAlumnoDetalle() {
+    public void mostrarPanelAlumnoDetalle() {
         vista.show(jPanelContenedor, "panelDetalle");
-         SwingUtilities.updateComponentTreeUI(this);
+        SwingUtilities.updateComponentTreeUI(this);
         this.repaint();
     }
 
