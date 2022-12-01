@@ -17,10 +17,10 @@ public class Main {
         XmlManager xmlmanager = new XmlManager();
 
         Alumno alunmo = new Alumno("Melvin", "20", "98897509", "04040300200383", "melvinjoe@gmail.com", "M");
-        
+
         xmlmanager.createAlumno(alunmo);
-    
+
         System.out.println("hola desde mi pc");
-         System.out.println("hola desde la mia");
+        System.out.println("hola desde la mia");
     }
 }
