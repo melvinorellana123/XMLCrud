@@ -3,13 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package proyectoxml.Alumno;
+
 import java.util.UUID;
+
 /**
- *
  * @author melvi
  */
 public class Alumno {
-   String nombre;
+
+    String nombre;
     String edad;
     String telefono;
     String identidad;
@@ -100,7 +102,10 @@ public class Alumno {
 
     @Override
     public String toString() {
-        return this.getNombre() + " " + this.getEdad() + " " + this.getTelefono() + " " + this.getIdentidad() + " " + this.getEmail() + " " + this.getSexo() + " " + this.getId();
+        return this.getNombre() + " " + this.getEdad() + " " + this.getTelefono() + " " + this.getIdentidad() + " " + this.getEmail() + " " + this.getSexo()+ " " + this.getId();
+    }
+
+    public String[] toRow() {
+        return new String[]{this.getNombre(), this.getEdad(), this.getTelefono(), this.getIdentidad(), this.getEmail(), this.getSexo(), this.getId()};
     }
 }
-

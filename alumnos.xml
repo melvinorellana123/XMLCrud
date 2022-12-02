@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><alumnos>
+    
     <alumno>
-        <nombre>Melvin</nombre>
-        <edad>20</edad>
-        <telefono>98897509</telefono>
-        <identidad>04040300200383</identidad>
-        <email>melvinjoe@gmail.com</email>
-        <sexo>M</sexo>
-        <id>a552f44f-732b-40e0-9278-50e5766cc6b5</id>
+        <nombre>fredy</nombre>
+        <edad>19</edad>
+        <telefono>11111111</telefono>
+        <identidad>4001200300609</identidad>
+        <email>fredy16v@gmail.com</email>
+        <sexo>Masculino</sexo>
+        <id>40986fa5-d718-4406-b39c-daecd752abf8</id>
     </alumno>
-<alumno><nombre>Erick Arita</nombre><edad>20</edad><telefono>98899889</telefono><identidad>0421200200847</identidad><email>erick.emao@gmail.com</email><sexo>Masculino</sexo><id>7d31d17b-10b2-4411-a5f5-004561da7624</id></alumno><alumno><nombre>Fredy</nombre><edad>19</edad><telefono>96819973</telefono><identidad>4001200300609</identidad><email>fredy16v@gmail.com</email><sexo>Masculino</sexo><id>2f7037ba-7956-4ccc-b0c3-68b8ca6cff95</id></alumno><alumno><nombre>fredy</nombre><edad>19</edad><telefono>96819973</telefono><identidad>0401200300609</identidad><email>fredy16v@gmail.com</email><sexo>Masculino</sexo><id>ad07ef34-272e-4668-be12-97032878d54c</id></alumno><alumno><nombre>fredy</nombre><edad>19</edad><telefono>96819973</telefono><identidad>0401200300609</identidad><email>fredy16v@gmail.com</email><sexo>Masculino</sexo><id>3a726f51-7369-4df3-a13e-317e78326080</id></alumno><alumno><nombre>Fredy Vasquez</nombre><edad>19</edad><telefono>96819973</telefono><identidad>0401200300609</identidad><email>fredy126v@gmail.com</email><sexo>Masculino</sexo><id>9178eedd-8a47-44d1-98aa-d53c215fda82</id></alumno><alumno><nombre>fredy</nombre><edad>19</edad><telefono>11111111</telefono><identidad>0401200300609</identidad><email>fredy16v@gmail.com</email><sexo>Masculino</sexo><id>dafd523e-72c5-472c-a5b8-dd5367172a7b</id></alumno><alumno><nombre>fredy</nombre><edad>19</edad><telefono>11111111</telefono><identidad>4001200300609</identidad><email>fredy16v@gmail.com</email><sexo>Masculino</sexo><id>40986fa5-d718-4406-b39c-daecd752abf8</id></alumno></alumnos>
+</alumnos>

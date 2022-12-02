@@ -4,16 +4,13 @@
  */
 package proyectoxml.GUI;
 
-import proyectoxml.util.Util;
-
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import proyectoxml.Alumno.Alumno;
+import proyectoxml.util.Util;
 
 /**
  * @author melvi
@@ -24,9 +21,26 @@ public class VentaPrincipal extends javax.swing.JFrame {
      * Creates new form Jframe
      */
     private CardLayout vista;
-    private PanelAlumnoDetalle panelAlumnosDetalle = new PanelAlumnoDetalle(this);
-    private PanelAlumnos panelAlumnos = new PanelAlumnos(this);
+    private PanelAlumnoDetalle panelAlumnosDetalle;
+    private PanelAlumnos panelAlumnos;
+    private Alumno selectedAlumno;
+    private boolean isEditingAlumno = false;
 
+    public boolean isEditingAlumno() {
+        return isEditingAlumno;
+    }
+
+    public void setIsEditingAlumno(boolean isEditingAlumno) {
+        this.isEditingAlumno = isEditingAlumno;
+    }
+
+    public Alumno getSelectedAlumno() {
+        return selectedAlumno;
+    }
+
+    public void setSelectedAlumno(Alumno selectedAlumno) {
+        this.selectedAlumno = selectedAlumno;
+    }
 
     public VentaPrincipal() {
         try {
@@ -36,6 +50,10 @@ public class VentaPrincipal extends javax.swing.JFrame {
         }
 
         initComponents();
+
+        panelAlumnos = new PanelAlumnos(this);
+        panelAlumnosDetalle = new PanelAlumnoDetalle(this, panelAlumnos);
+
         vista = (CardLayout) jPanelContenedor.getLayout();
         jPanelContenedor.add(panelAlumnosDetalle, "panelDetalle");
         jPanelContenedor.add(panelAlumnos, "panelAlumnos");
@@ -52,6 +70,10 @@ public class VentaPrincipal extends javax.swing.JFrame {
     }
 
     public void mostrarPanelAlumnoDetalle() {
+        this.panelAlumnosDetalle = null;
+        this.panelAlumnosDetalle = new PanelAlumnoDetalle(this, panelAlumnos);
+
+        jPanelContenedor.add(panelAlumnosDetalle, "panelDetalle");
         vista.show(jPanelContenedor, "panelDetalle");
         SwingUtilities.updateComponentTreeUI(this);
         this.repaint();
@@ -70,11 +92,17 @@ public class VentaPrincipal extends javax.swing.JFrame {
         jPanelContenedor = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(800, 544));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(generalError, new org.netbeans.lib.awtextra.AbsoluteConstraints(462, 6, 215, -1));
 
-        jPanelContenedor.setLayout(new java.awt.CardLayout());
-        getContentPane().add(jPanelContenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -3, 700, 500));
+        generalError.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        generalError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(generalError, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 6, 830, 30));
+
+        jPanelContenedor.setPreferredSize(new java.awt.Dimension(800, 544));
+        jPanelContenedor.setLayout(new java.awt.CardLayout(10, 0));
+        getContentPane().add(jPanelContenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 840, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -117,6 +145,14 @@ public class VentaPrincipal extends javax.swing.JFrame {
         });
     }
 
+    public void setGeneralError(String texto, int millisecods) {
+        generalError.setForeground(Color.RED);
+        generalError.setText(texto);
+        Util.setTimeout(() -> {
+            generalError.setText("");
+        }, millisecods);
+
+    }
 
     public void setGeneralError(String texto) {
         generalError.setForeground(Color.RED);
@@ -124,15 +160,22 @@ public class VentaPrincipal extends javax.swing.JFrame {
         Util.setTimeout(() -> {
             generalError.setText("");
         }, 3000);
-
     }
-    
-    public void setSuccesMessage(String texto){
+
+    public void setSuccesMessage(String texto) {
         generalError.setForeground(Color.GREEN);
         generalError.setText(texto);
         Util.setTimeout(() -> {
             generalError.setText("");
         }, 3000);
+    }
+
+    public void setSuccesMessage(String texto, int millisecods) {
+        generalError.setForeground(new Color(1, 176, 104));
+        generalError.setText(texto);
+        Util.setTimeout(() -> {
+            generalError.setText("");
+        }, millisecods);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

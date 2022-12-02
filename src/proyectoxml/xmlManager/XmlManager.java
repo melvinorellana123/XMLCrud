@@ -4,8 +4,8 @@
  */
 package proyectoxml.xmlManager;
 
-import org.w3c.dom.*;
-
+import java.io.File;
+import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -15,8 +15,7 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.File;
-import java.util.ArrayList;
+import org.w3c.dom.*;
 import proyectoxml.Alumno.Alumno;
 
 /**
@@ -24,7 +23,8 @@ import proyectoxml.Alumno.Alumno;
  * @author melvi
  */
 public class XmlManager {
-     private String filePath = "alumnos.xml";
+
+    private String filePath = "alumnos.xml";
 
     private File archivoXml;
 
@@ -33,7 +33,6 @@ public class XmlManager {
     public XmlManager() {
         validateExistXml();
     }
-
 
     private void validateExistXml() {
         File xmlFile = new File(filePath);
@@ -44,7 +43,6 @@ public class XmlManager {
             readXml();
         }
     }
-
 
     private void readXml() {
         try {
@@ -57,7 +55,6 @@ public class XmlManager {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-
 
     }
 
@@ -89,14 +86,11 @@ public class XmlManager {
         }
     }
 
-
     public Alumno getAlumnoById(String id) {
         Alumno alumno = null;
         readXml();
 
-
         NodeList listaAlumnos = document.getElementsByTagName("alumno");
-
 
         for (int i = 0; i < listaAlumnos.getLength(); i++) {
             Node alumnoNode = listaAlumnos.item(i);
@@ -118,7 +112,6 @@ public class XmlManager {
         readXml();
         try {
             Element alumnos = document.getDocumentElement();
-
 
             Element alumnoNuevo = document.createElement("alumno");
 
@@ -142,7 +135,6 @@ public class XmlManager {
 
             Element id = document.createElement("id");
             id.setTextContent(alumno.getId());
-
 
             alumnoNuevo.appendChild(nombre);
             alumnoNuevo.appendChild(edad);
@@ -213,15 +205,12 @@ public class XmlManager {
         return true;
     }
 
-    public ArrayList<Alumno> listarAlumnos() throws Exception {
+    public ArrayList<Alumno> listarAlumnos() {
 
+        readXml();
         NodeList alumnosXml = document.getElementsByTagName("alumno");
 
         ArrayList<Alumno> alumnosArray = new ArrayList<Alumno>();
-
-        if (alumnosXml.getLength() == 0) {
-            throw new Exception("No hay ningun alumno registrado");
-        }
 
         for (int i = 0; i < alumnosXml.getLength(); i++) {
 
@@ -278,5 +267,36 @@ public class XmlManager {
         }
 
         return false;
+    }
+
+    public ArrayList<Alumno> searchByName(String nombreBuscado) throws Exception {
+
+        readXml();
+        NodeList alumnosXml = document.getElementsByTagName("alumno");
+
+        ArrayList<Alumno> alumnosArray = new ArrayList<Alumno>();
+
+        if (alumnosXml.getLength() == 0) {
+            throw new Exception("No hay ningun alumno registrado con este nombre");
+        }
+
+        for (int i = 0; i < alumnosXml.getLength(); i++) {
+
+            Node alumnoXml = alumnosXml.item(i);
+            if (alumnoXml.getNodeType() == Node.ELEMENT_NODE) {
+                Element alumnoValido = (Element) alumnoXml;
+                String nombre = alumnoValido.getElementsByTagName("nombre").item(0).getTextContent();
+
+                if (nombre.toLowerCase().contains(nombreBuscado.toLowerCase())) {
+                    Alumno parcedAlumno = this.parseAlumnoFromXml(alumnoValido);
+                    alumnosArray.add(parcedAlumno);
+                } else {
+                    throw new Exception("No hay ningun alumno registrado con este nombre");
+                }
+
+            }
+        }
+
+        return alumnosArray;
     }
 }

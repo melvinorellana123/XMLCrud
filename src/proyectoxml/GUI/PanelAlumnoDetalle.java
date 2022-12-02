@@ -4,34 +4,57 @@
  */
 package proyectoxml.GUI;
 
-
+import java.awt.*;
+import javax.swing.*;
 import proyectoxml.Alumno.Alumno;
 import proyectoxml.xmlManager.XmlManager;
-
-import javax.swing.*;
-import java.awt.*;
 
 /**
  * @author melvi
  */
 public class PanelAlumnoDetalle extends javax.swing.JPanel {
+
     XmlManager xmlManager = new XmlManager();
 
     private VentaPrincipal ventaPrincipal;
+    private PanelAlumnos panelAlumnos;
 
     /**
      * Creates new form AlumnoDetalle
      */
-    public PanelAlumnoDetalle(VentaPrincipal vp) {
+    public PanelAlumnoDetalle(VentaPrincipal ventanaPrincipal, PanelAlumnos panelAlumnos) {
         initComponents();
         buttonOptionGroup1.add(rbMasculino);
         buttonOptionGroup1.add(rbFemenino);
-        this.ventaPrincipal = vp;
-        ageError.setText("");
-        emailError.setText("");
-        idError.setText("");
-        nameError.setText("");
-        phoneError.setText("");
+
+        this.ventaPrincipal = ventanaPrincipal;
+        this.panelAlumnos = panelAlumnos;
+        setInitialFieldsValues();
+
+    }
+
+    private void setInitialFieldsValues() {
+        if (ventaPrincipal.isEditingAlumno()) {
+            Alumno selectedAlumno = ventaPrincipal.getSelectedAlumno();
+            txtCorreo.setText(selectedAlumno.getEmail());
+            txtNombre.setText(selectedAlumno.getNombre());
+            txtTelefono.setText(selectedAlumno.getTelefono());
+            txtIdentidad.setText(selectedAlumno.getIdentidad());
+            txtEdad.setText(String.valueOf(selectedAlumno.getEdad()));
+
+            if (selectedAlumno.getSexo().equals("Masculino")) {
+                rbMasculino.setSelected(true);
+            } else {
+                rbFemenino.setSelected(true);
+            }
+
+            btnCrear.setText("Actualizar");
+            lblTitle.setText("Editar Alumno");
+        } else {
+
+            btnCrear.setText("Crear");
+            lblTitle.setText("Crear Alumno");
+        }
     }
 
     /**
@@ -72,8 +95,10 @@ public class PanelAlumnoDetalle extends javax.swing.JPanel {
         genderError = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
         btnCrear = new javax.swing.JButton();
+        lblTitle = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(800, 277));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -82,7 +107,6 @@ public class PanelAlumnoDetalle extends javax.swing.JPanel {
         jLabel2.setText("Identidad");
 
         idError.setForeground(new java.awt.Color(255, 51, 51));
-        idError.setText("jLabel7");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -122,7 +146,6 @@ public class PanelAlumnoDetalle extends javax.swing.JPanel {
         jLabel1.setText("Nombre");
 
         nameError.setForeground(new java.awt.Color(255, 51, 51));
-        nameError.setText("jLabel7");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -147,7 +170,7 @@ public class PanelAlumnoDetalle extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nameError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(nameError, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
         );
 
         jPanel4.setMaximumSize(new java.awt.Dimension(100, 100));
@@ -155,7 +178,6 @@ public class PanelAlumnoDetalle extends javax.swing.JPanel {
         jLabel3.setText("Correo");
 
         emailError.setForeground(new java.awt.Color(255, 51, 51));
-        emailError.setText("jLabel7");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -164,24 +186,22 @@ public class PanelAlumnoDetalle extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(emailError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(emailError, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(0, 79, Short.MAX_VALUE)))
+                            .addComponent(jLabel3)
+                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 17, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(emailError, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(emailError, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel6.setMaximumSize(new java.awt.Dimension(100, 100));
@@ -189,7 +209,6 @@ public class PanelAlumnoDetalle extends javax.swing.JPanel {
         jLabel5.setText("Edad");
 
         ageError.setForeground(new java.awt.Color(255, 51, 51));
-        ageError.setText("jLabel7");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -227,7 +246,6 @@ public class PanelAlumnoDetalle extends javax.swing.JPanel {
         jLabel4.setText("Teléfono");
 
         phoneError.setForeground(new java.awt.Color(255, 51, 51));
-        phoneError.setText("jLabel7");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -322,29 +340,27 @@ public class PanelAlumnoDetalle extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(29, 29, 29))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, Short.MAX_VALUE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
         );
+
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -352,6 +368,7 @@ public class PanelAlumnoDetalle extends javax.swing.JPanel {
                 btnCancelarActionPerformed(evt);
             }
         });
+        add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, -1, -1));
 
         btnCrear.setText("Crear");
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
@@ -359,34 +376,10 @@ public class PanelAlumnoDetalle extends javax.swing.JPanel {
                 btnCrearActionPerformed(evt);
             }
         });
+        add(btnCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 290, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(77, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnCancelar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCrear)
-                        .addGap(291, 291, 291))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnCrear))
-                .addGap(23, 23, 23))
-        );
+        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 220, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -396,18 +389,48 @@ public class PanelAlumnoDetalle extends javax.swing.JPanel {
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         boolean isValid = validateValues();
 
-        if (isValid) {
-            Alumno alumnoToCreate = getAlumno();
-            try {
-                xmlManager.createAlumno(alumnoToCreate);
-                ventaPrincipal.mostrarPanelAlumnos();
-                ventaPrincipal.setSuccesMessage("Alumno creado correctamente.");
-            } catch (Exception e) {
-                ventaPrincipal.setGeneralError("Ocurrió un error al crear el alumno, contacte al administrador");
-            }
+        if (!isValid) {
+            return;
+        }
+
+        if (ventaPrincipal.isEditingAlumno()) {
+            onEditAlumno();
+        } else {
+            onCreateAlumno();
         }
 
     }//GEN-LAST:event_btnCrearActionPerformed
+
+    private void onCreateAlumno() {
+        Alumno alumnoToCreate = getAlumno();
+        try {
+            xmlManager.createAlumno(alumnoToCreate);
+            ventaPrincipal.mostrarPanelAlumnos();
+            panelAlumnos.getAlumnos();
+            panelAlumnos.refreshTable();
+            ventaPrincipal.setSuccesMessage("Alumno creado correctamente.", 6000);
+        } catch (Exception e) {
+            e.printStackTrace();
+            ventaPrincipal.setGeneralError(e.getMessage());
+        }
+    }
+
+    private void onEditAlumno() {
+        Alumno updatedAlumno = getAlumno();
+        String idToEdith = ventaPrincipal.getSelectedAlumno().getId();
+
+        updatedAlumno.setId(idToEdith);
+        try {
+            xmlManager.updateAlumno(updatedAlumno);
+            ventaPrincipal.mostrarPanelAlumnos();
+            panelAlumnos.getAlumnos();
+            panelAlumnos.refreshTable();
+            ventaPrincipal.setSuccesMessage("Alumno actualizado correctamente.", 6000);
+        } catch (Exception e) {
+            e.printStackTrace();
+            ventaPrincipal.setGeneralError(e.getMessage());
+        }
+    }
 
     private void rbFemeninoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbFemeninoActionPerformed
         // TODO add your handling code here:
@@ -424,7 +447,6 @@ public class PanelAlumnoDetalle extends javax.swing.JPanel {
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
-
 
     private String validateCorreo() throws Exception {
         String correo = txtCorreo.getText();
@@ -469,7 +491,6 @@ public class PanelAlumnoDetalle extends javax.swing.JPanel {
         }
     }
 
-
     private void validateTelefono() throws Exception {
         try {
             String telefono = validarTexto(txtTelefono.getText());
@@ -497,7 +518,6 @@ public class PanelAlumnoDetalle extends javax.swing.JPanel {
             throw new Exception(e.getMessage(), new Throwable("idError"));
         }
     }
-
 
     private void validaNombre() throws Exception {
         try {
@@ -536,7 +556,6 @@ public class PanelAlumnoDetalle extends javax.swing.JPanel {
             isValid = false;
         }
 
-
         try {
             validateTelefono();
             phoneError.setText("");
@@ -570,7 +589,7 @@ public class PanelAlumnoDetalle extends javax.swing.JPanel {
             isValid = false;
         }
 
-        if (!rbMasculino.isSelected()  && !rbFemenino.isSelected()) {
+        if (!rbMasculino.isSelected() && !rbFemenino.isSelected()) {
             genderError.setText("Debe seleccionar un género");
             isValid = false;
         } else {
@@ -590,7 +609,6 @@ public class PanelAlumnoDetalle extends javax.swing.JPanel {
         alumno.setSexo(rbMasculino.isSelected() ? "Masculino" : "Femenino");
         return alumno;
     }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ageError;
@@ -613,6 +631,7 @@ public class PanelAlumnoDetalle extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel nameError;
     private javax.swing.JLabel phoneError;
     private javax.swing.JRadioButton rbFemenino;
