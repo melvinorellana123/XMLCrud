@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><alumnos>
+    <alumno>
+        <nombre>Melvin</nombre>
+        <edad>20</edad>
+        <telefono>98897509</telefono>
+        <identidad>04040300200383</identidad>
+        <email>melvinjoe@gmail.com</email>
+        <sexo>M</sexo>
+        <id>a552f44f-732b-40e0-9278-50e5766cc6b5</id>
+    </alumno>
+<alumno><nombre>Erick Arita</nombre><edad>20</edad><telefono>98899889</telefono><identidad>0421200200847</identidad><email>erick.emao@gmail.com</email><sexo>Masculino</sexo><id>7d31d17b-10b2-4411-a5f5-004561da7624</id></alumno></alumnos>
