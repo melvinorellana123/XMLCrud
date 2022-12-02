@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><alumnos>
     
+    
     <alumno>
         <nombre>fredy</nombre>
+        <edad>19</edad>
+        <telefono>11111111</telefono>
+        <identidad>4001200300609</identidad>
+        <email>fredy16v@gmail.com</email>
+        <sexo>Masculino</sexo>
+        <id>40986fa5-d718-4406-b39c-daecd752abf8</id>
+    </alumno>
+    <alumno>
+        <nombre>fredy arita </nombre>
+        <edad>19</edad>
+        <telefono>11111111</telefono>
+        <identidad>4001200300609</identidad>
+        <email>fredy16v@gmail.com</email>
+        <sexo>Masculino</sexo>
+        <id>40986fa5-d718-4406-b39c-daecd752abf8</id>
+    </alumno>
+    <alumno>
+        <nombre>fredy arita </nombre>
         <edad>19</edad>
         <telefono>11111111</telefono>
         <identidad>4001200300609</identidad>

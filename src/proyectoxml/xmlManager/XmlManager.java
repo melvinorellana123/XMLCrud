@@ -277,7 +277,7 @@ public class XmlManager {
         ArrayList<Alumno> alumnosArray = new ArrayList<Alumno>();
 
         if (alumnosXml.getLength() == 0) {
-            throw new Exception("No hay ningun alumno registrado con este nombre");
+            throw new Exception("No hay datos para mostrar");
         }
 
         for (int i = 0; i < alumnosXml.getLength(); i++) {
@@ -287,14 +287,17 @@ public class XmlManager {
                 Element alumnoValido = (Element) alumnoXml;
                 String nombre = alumnoValido.getElementsByTagName("nombre").item(0).getTextContent();
 
-                if (nombre.toLowerCase().contains(nombreBuscado.toLowerCase())) {
+                boolean seEncontro = nombre.toLowerCase().contains(nombreBuscado.toLowerCase());
+
+                if (seEncontro) {
                     Alumno parcedAlumno = this.parseAlumnoFromXml(alumnoValido);
                     alumnosArray.add(parcedAlumno);
-                } else {
-                    throw new Exception("No hay ningun alumno registrado con este nombre");
                 }
-
             }
+        }
+
+        if (alumnosArray.size() == 0) {
+            throw new Exception("No se encontro el alumno");
         }
 
         return alumnosArray;
