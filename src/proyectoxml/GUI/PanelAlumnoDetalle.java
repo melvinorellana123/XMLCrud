@@ -401,6 +401,7 @@ public class PanelAlumnoDetalle extends javax.swing.JPanel {
             try {
                 xmlManager.createAlumno(alumnoToCreate);
                 ventaPrincipal.mostrarPanelAlumnos();
+                ventaPrincipal.setSuccesMessage("Alumno creado correctamente.");
             } catch (Exception e) {
                 ventaPrincipal.setGeneralError("Ocurrió un error al crear el alumno, contacte al administrador");
             }

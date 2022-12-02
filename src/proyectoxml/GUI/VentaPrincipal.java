@@ -7,6 +7,7 @@ package proyectoxml.GUI;
 import proyectoxml.util.Util;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -28,7 +29,7 @@ public class VentaPrincipal extends javax.swing.JFrame {
 
 
     public VentaPrincipal() {
-           try {
+        try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
             ex.printStackTrace();
@@ -118,11 +119,20 @@ public class VentaPrincipal extends javax.swing.JFrame {
 
 
     public void setGeneralError(String texto) {
+        generalError.setForeground(Color.RED);
         generalError.setText(texto);
         Util.setTimeout(() -> {
             generalError.setText("");
         }, 3000);
 
+    }
+    
+    public void setSuccesMessage(String texto){
+        generalError.setForeground(Color.GREEN);
+        generalError.setText(texto);
+        Util.setTimeout(() -> {
+            generalError.setText("");
+        }, 3000);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
