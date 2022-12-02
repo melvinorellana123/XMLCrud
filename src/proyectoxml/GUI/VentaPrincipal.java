@@ -4,11 +4,15 @@
  */
 package proyectoxml.GUI;
 
+import proyectoxml.util.Util;
+
 import java.awt.CardLayout;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import javax.swing.SwingUtilities;
 
 /**
- *
  * @author melvi
  */
 public class VentaPrincipal extends javax.swing.JFrame {
@@ -19,6 +23,7 @@ public class VentaPrincipal extends javax.swing.JFrame {
     private CardLayout vista;
     private PanelAlumnoDetalle panelAlumnosDetalle = new PanelAlumnoDetalle(this);
     private PanelAlumnos panelAlumnos = new PanelAlumnos(this);
+
 
     public VentaPrincipal() {
         initComponents();
@@ -52,35 +57,15 @@ public class VentaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jToast = new javax.swing.JOptionPane();
+        generalError = new javax.swing.JLabel();
         jPanelContenedor = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(generalError, new org.netbeans.lib.awtextra.AbsoluteConstraints(462, 6, 215, -1));
 
         jPanelContenedor.setLayout(new java.awt.CardLayout());
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelContenedor, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jToast, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanelContenedor, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jToast, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        getContentPane().add(jPanelContenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -3, 700, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -92,7 +77,7 @@ public class VentaPrincipal extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -123,8 +108,17 @@ public class VentaPrincipal extends javax.swing.JFrame {
         });
     }
 
+
+    public void setGeneralError(String texto) {
+        generalError.setText(texto);
+        Util.setTimeout(() -> {
+            generalError.setText("");
+        }, 3000);
+
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel generalError;
     private javax.swing.JPanel jPanelContenedor;
-    private javax.swing.JOptionPane jToast;
     // End of variables declaration//GEN-END:variables
 }

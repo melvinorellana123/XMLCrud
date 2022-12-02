@@ -94,6 +94,10 @@ public class Alumno {
         this.id = UUID.randomUUID();
     }
 
+    public Alumno() {
+        this.id = UUID.randomUUID();
+    }
+
     @Override
     public String toString() {
         return this.getNombre() + " " + this.getEdad() + " " + this.getTelefono() + " " + this.getIdentidad() + " " + this.getEmail() + " " + this.getSexo() + " " + this.getId();
