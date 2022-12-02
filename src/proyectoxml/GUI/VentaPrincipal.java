@@ -11,6 +11,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * @author melvi
@@ -26,6 +28,12 @@ public class VentaPrincipal extends javax.swing.JFrame {
 
 
     public VentaPrincipal() {
+           try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            ex.printStackTrace();
+        }
+
         initComponents();
         vista = (CardLayout) jPanelContenedor.getLayout();
         jPanelContenedor.add(panelAlumnosDetalle, "panelDetalle");
