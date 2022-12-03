@@ -244,7 +244,6 @@ public class PanelAlumnos extends javax.swing.JPanel {
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
         String seachhWord = this.txtBuscar.getText().trim();
 
-        System.out.println(evt.getKeyCode() == KeyEvent.VK_ENTER);
         if (seachhWord.isEmpty()) {
             try {
                 getAlumnos();
