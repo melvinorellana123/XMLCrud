@@ -1,31 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><alumnos>
     
     
+    
+    
+    
     <alumno>
-        <nombre>fredy</nombre>
-        <edad>19</edad>
-        <telefono>11111111</telefono>
-        <identidad>4001200300609</identidad>
-        <email>fredy16v@gmail.com</email>
+        <nombre>Melvin</nombre>
+        <edad>12</edad>
+        <telefono>12323355</telefono>
+        <identidad>1231231212121</identidad>
+        <email>@.</email>
         <sexo>Masculino</sexo>
-        <id>40986fa5-d718-4406-b39c-daecd752abf8</id>
+        <id>537ecac4-ca24-4035-9c39-f2146d15e4d4</id>
     </alumno>
     <alumno>
-        <nombre>fredy arita </nombre>
-        <edad>19</edad>
-        <telefono>11111111</telefono>
-        <identidad>4001200300609</identidad>
-        <email>fredy16v@gmail.com</email>
+        <nombre>TESTA</nombre>
+        <edad>12</edad>
+        <telefono>12323355</telefono>
+        <identidad>1231231212121</identidad>
+        <email>@.</email>
         <sexo>Masculino</sexo>
-        <id>40986fa5-d718-4406-b39c-daecd752abf8</id>
+        <id>537ecac4-ca24-4035-9c39-f2146d15e4d1</id>
     </alumno>
     <alumno>
-        <nombre>fredy arita </nombre>
-        <edad>19</edad>
-        <telefono>11111111</telefono>
-        <identidad>4001200300609</identidad>
-        <email>fredy16v@gmail.com</email>
+        <nombre>jUAN</nombre>
+        <edad>12</edad>
+        <telefono>12323355</telefono>
+        <identidad>1231231212121</identidad>
+        <email>@.</email>
         <sexo>Masculino</sexo>
-        <id>40986fa5-d718-4406-b39c-daecd752abf8</id>
+        <id>537ecac4-ca24-4035-9c39-f2146d15e4d2</id>
     </alumno>
 </alumnos>

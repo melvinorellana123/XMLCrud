@@ -174,14 +174,6 @@ public class VentaPrincipal extends javax.swing.JFrame {
         }, 3000);
     }
 
-    public void setSuccesMessage(String texto) {
-        generalError.setForeground(Color.GREEN);
-        generalError.setText(texto);
-        Util.setTimeout(() -> {
-            generalError.setText("");
-        }, 3000);
-    }
-
     public void setSuccesMessage(String texto, int millisecods) {
         generalError.setForeground(new Color(1, 176, 104));
         generalError.setText(texto);

@@ -4,6 +4,7 @@
  */
 package proyectoxml.GUI;
 
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -25,7 +26,6 @@ public class PanelAlumnos extends javax.swing.JPanel {
         initComponents();
         this.ventanaPrincipal = vp;
         dtm = (DefaultTableModel) JTAlumnos.getModel();
-        JTAlumnos.setModel(dtm);
         getAlumnos();
         refreshTable();
     }
@@ -62,6 +62,12 @@ public class PanelAlumnos extends javax.swing.JPanel {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyReleased(evt);
+            }
+        });
+
         btnBuscar.setText("Buscar");
         btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -71,6 +77,11 @@ public class PanelAlumnos extends javax.swing.JPanel {
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
+            }
+        });
+        btnBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                btnBuscarKeyTyped(evt);
             }
         });
 
@@ -230,10 +241,32 @@ public class PanelAlumnos extends javax.swing.JPanel {
         searchByName();
     }//GEN-LAST:event_btnBuscarMouseClicked
 
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
+        String seachhWord = this.txtBuscar.getText().trim();
+
+        System.out.println(evt.getKeyCode() == KeyEvent.VK_ENTER);
+        if (seachhWord.isEmpty()) {
+            try {
+                getAlumnos();
+                refreshTable();
+            } catch (Exception e) {
+                ventanaPrincipal.setGeneralError(e.getMessage());
+            }
+        }
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            searchByName();
+        }
+
+    }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void btnBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBuscarKeyTyped
+
+    }//GEN-LAST:event_btnBuscarKeyTyped
+
     private void searchByName() {
         String seachhWord = this.txtBuscar.getText().trim();
 
-        System.out.println(seachhWord);
         try {
             if (seachhWord.isEmpty()) {
                 alumnos = xmlManager.listarAlumnos();
@@ -259,11 +292,6 @@ public class PanelAlumnos extends javax.swing.JPanel {
             ventanaPrincipal.setSelectedAlumno(null);
         } catch (Exception e) {
             ventanaPrincipal.setGeneralError(e.getMessage());
-
-            if (alumnos.size() == 1) {
-                dtm.setRowCount(0);
-                System.out.println("hola");
-            }
         }
     }
 
