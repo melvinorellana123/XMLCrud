@@ -6,6 +6,8 @@ package proyectoxml.GUI;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -40,6 +42,14 @@ public class VentaPrincipal extends javax.swing.JFrame {
 
     public void setSelectedAlumno(Alumno selectedAlumno) {
         this.selectedAlumno = selectedAlumno;
+    }
+
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().
+                getImage(ClassLoader.getSystemResource("resources/registro.png"));
+
+        return retValue;
     }
 
     public VentaPrincipal() {
@@ -92,6 +102,8 @@ public class VentaPrincipal extends javax.swing.JFrame {
         jPanelContenedor = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Registro de Alumnos 100%");
+        setIconImage(getIconImage());
         setMinimumSize(new java.awt.Dimension(800, 544));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -101,7 +113,7 @@ public class VentaPrincipal extends javax.swing.JFrame {
         getContentPane().add(generalError, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 6, 830, 30));
 
         jPanelContenedor.setPreferredSize(new java.awt.Dimension(800, 544));
-        jPanelContenedor.setLayout(new java.awt.CardLayout(10, 0));
+        jPanelContenedor.setLayout(new java.awt.CardLayout());
         getContentPane().add(jPanelContenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 840, 490));
 
         pack();
